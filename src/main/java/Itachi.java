@@ -42,14 +42,44 @@ public class Itachi {
                 System.out.println("-------------------------------------");
 
             } else {
-                Task task = new Task(input);
+
+                if (input.toLowerCase().startsWith("todo")) {
+                String desc = input.substring(5);
+                Task task = new Todo(desc);
                 list.add(task);
-                System.out.println("-------------------------------------");
-                System.out.println("added: " + input);
-                System.out.println("-------------------------------------");
+                printTasksAdded(task, list.size());
+
+                } else if (input.toLowerCase().startsWith("deadline")) {
+                    String[] parts = input.split("/by", 2);
+                    String desc = parts[0].substring(9).trim();
+                    String by = parts[1].trim();
+                    Task task = new Deadline(desc, by);
+                    list.add(task);
+                    printTasksAdded(task, list.size());
+
+                } else if (input.toLowerCase().startsWith("event")) {
+                    String[] parts = input.split("/from|/to");
+                    String desc = parts[0].substring(6).trim();
+                    String from = parts[1].trim();
+                    String to = parts[2].trim();
+                    Task task = new Event(desc, from, to);
+                    list.add(task);
+                    printTasksAdded(task, list.size());
+                }
             }
 
         }
        
+    }
+
+    private static void printTasksAdded(Task task, int numTasks) {
+        System.out.println("-------------------------------------");
+        System.out.println("Got it. I've added this task: ");
+        System.out.println(task.toString());
+        System.out.println("Now you have " + numTasks + " tasks in the list!");
+        System.out.println("-------------------------------------");
+
+
+
     }
 }
