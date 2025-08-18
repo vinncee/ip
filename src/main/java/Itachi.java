@@ -41,6 +41,14 @@ public class Itachi {
                 System.out.println(task.toString());
                 System.out.println("-------------------------------------");
 
+            } else if (input.toLowerCase().startsWith("delete")) {
+                int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                Task task = list.get(index);
+                list.remove(index);
+                System.out.println("-------------------------------------");
+                System.out.println("Ok! This task is removed: \n   " + 
+                task.toString() + "\nNow you have " + list.size() + " tasks in the list!" );
+
             } else {
                 try {
                     checkInput(input, list);
