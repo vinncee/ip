@@ -12,20 +12,24 @@ Now you have 2 tasks in the list!
 -------------------------------------
 -------------------------------------
 Got it. I've added this task: 
-[E][ ] project meeting(from: Mon 2pm to: 4pm)
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
 Now you have 3 tasks in the list!
 -------------------------------------
 -------------------------------------
 Here are the tasks in your list:
 1. [T][ ] run a 100m sprint
 2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting(from: Mon 2pm to: 4pm)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
+-------------------------------------
+-------------------------------------
+Nice! I've marked this task as done:
+[D][X] return book (by: Sunday)
 -------------------------------------
 -------------------------------------
 Here are the tasks in your list:
 1. [T][ ] run a 100m sprint
-2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting(from: Mon 2pm to: 4pm)
+2. [D][X] return book (by: Sunday)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 -------------------------------------
 -------------------------------------
 Sure! I've marked this task as NOT done
@@ -35,8 +39,38 @@ Sure! I've marked this task as NOT done
 Here are the tasks in your list:
 1. [T][ ] run a 100m sprint
 2. [D][ ] return book (by: Sunday)
-3. [E][ ] project meeting(from: Mon 2pm to: 4pm)
+3. [E][ ] project meeting (from: Mon 2pm to: 4pm)
 -------------------------------------
+--------------------------------------------------
+Error: you not gonna key in what u wanna do?
+--------------------------------------------------
+--------------------------------------------------
+This is an invalid command!
+--------------------------------------------------
+--------------------------------------------------
+Error: no empty messages and please write '/by' followed by the deadline
+--------------------------------------------------
+--------------------------------------------------
+Error: no empty messages and please write '/by' followed by the deadline
+--------------------------------------------------
+--------------------------------------------------
+Error: Write what you gonna do and the deadline
+--------------------------------------------------
+--------------------------------------------------
+Error: Write the description followed by '/from' time, and '/to' time! 
+--------------------------------------------------
+--------------------------------------------------
+Error: Write the description followed by '/from' time, and '/to' time! 
+--------------------------------------------------
+--------------------------------------------------
+Error: Please write description, '/from' date and '/to' date
+--------------------------------------------------
+--------------------------------------------------
+Error: Please write description, '/from' date and '/to' date
+--------------------------------------------------
+--------------------------------------------------
+This is an invalid command!
+--------------------------------------------------
 -------------------------------------
 byeee see u in the leaf village again!
 -------------------------------------
