@@ -9,56 +9,122 @@ public class Itachi {
         
         while (true) {
             String input = scanner.nextLine().trim();
-            if (input.equalsIgnoreCase("bye")) {
+            String[] parts = input.split(" ", 2);
+            Commands convertedEnum;
+            try {
+                convertedEnum = Commands.convertStringToEnum(parts[0]);
+            } catch (ItachiException e) {
+                System.out.println("--------------------------------------------------");
+                System.out.println(e.getMessage());
+                System.out.println("--------------------------------------------------");
+                continue;
+            }
+            
+            switch (convertedEnum) {
+                case BYE:
                 System.out.println("-------------------------------------");
                 System.out.println("byeee see u in the leaf village again!");
                 System.out.println("-------------------------------------");
-                break;
+                return;
 
-            } else if (input.equalsIgnoreCase("list")) {
+                case LIST:
                 System.out.println("-------------------------------------");
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < list.size(); i++) {
                     System.out.println(i+1 + ". " + list.get(i).toString());
                 }
                 System.out.println("-------------------------------------");
+                break;
 
-            } else if (input.toLowerCase().startsWith("mark ")) {
-                int index = Integer.parseInt(input.split(" ")[1]) - 1;
-                Task task = list.get(index);
-                task.markAsDone();
-                System.out.println("-------------------------------------");
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(task.toString());
-                System.out.println("-------------------------------------");
+                case MARK:
+                case UNMARK:
+                case DELETE:
+                    int index = Integer.parseInt(input.split(" ")[1]) - 1;
+                    Task task = list.get(index);
+                    if (convertedEnum == Commands.MARK) {
+                        task.markAsDone();
+                        System.out.println("-------------------------------------");
+                        System.out.println("Nice! I've marked this task as done:");
+                        System.out.println(task.toString());
+                        System.out.println("-------------------------------------");
+                    } else if (convertedEnum == Commands.UNMARK) {
+                        task.markAsNotDone();
+                        System.out.println("-------------------------------------");
+                        System.out.println("Sure! I've marked this task as NOT done");
+                        System.out.println(task.toString());
+                        System.out.println("-------------------------------------");
+                    } else if (convertedEnum == Commands.DELETE) {
+                        list.remove(index);
+                        System.out.println("-------------------------------------");
+                        System.out.println("Ok! This task is removed: \n   " + 
+                        task.toString() + "\nNow you have " + list.size() + " tasks in the list!" );
+                    }
+                    break;
+                
+                case TODO:
+                case DEADLINE:
+                case EVENT: 
+                    try {
+                        checkInput(input, list);
+                    } catch (ItachiException e) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Error: " + e.getMessage());
+                        System.out.println("--------------------------------------------------");
+                    }
+                    break;
+                    
+            }
 
-            } else if (input.toLowerCase().startsWith("unmark ")) {
-                int index = Integer.parseInt(input.split(" ")[1]) - 1;
-                Task task = list.get(index);
-                task.markAsNotDone();
-                System.out.println("-------------------------------------");
-                System.out.println("Sure! I've marked this task as NOT done");
-                System.out.println(task.toString());
-                System.out.println("-------------------------------------");
+            // if (input.equalsIgnoreCase("bye")) {
+            //     System.out.println("-------------------------------------");
+            //     System.out.println("byeee see u in the leaf village again!");
+            //     System.out.println("-------------------------------------");
+            //     break;
 
-            } else if (input.toLowerCase().startsWith("delete")) {
-                int index = Integer.parseInt(input.split(" ")[1]) - 1;
-                Task task = list.get(index);
-                list.remove(index);
-                System.out.println("-------------------------------------");
-                System.out.println("Ok! This task is removed: \n   " + 
-                task.toString() + "\nNow you have " + list.size() + " tasks in the list!" );
+            // } else if (input.equalsIgnoreCase("list")) {
+            //     System.out.println("-------------------------------------");
+            //     System.out.println("Here are the tasks in your list:");
+            //     for (int i = 0; i < list.size(); i++) {
+            //         System.out.println(i+1 + ". " + list.get(i).toString());
+            //     }
+            //     System.out.println("-------------------------------------");
 
-            } else {
-                try {
-                    checkInput(input, list);
-                } catch (ItachiException e) {
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("Error: " + e.getMessage());
-                    System.out.println("--------------------------------------------------");
-                }
+            // } else if (input.toLowerCase().startsWith("mark ")) {
+            //     int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            //     Task task = list.get(index);
+            //     task.markAsDone();
+            //     System.out.println("-------------------------------------");
+            //     System.out.println("Nice! I've marked this task as done:");
+            //     System.out.println(task.toString());
+            //     System.out.println("-------------------------------------");
 
-                }
+            // } else if (input.toLowerCase().startsWith("unmark ")) {
+            //     int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            //     Task task = list.get(index);
+            //     task.markAsNotDone();
+            //     System.out.println("-------------------------------------");
+            //     System.out.println("Sure! I've marked this task as NOT done");
+            //     System.out.println(task.toString());
+            //     System.out.println("-------------------------------------");
+
+            // } else if (input.toLowerCase().startsWith("delete")) {
+            //     int index = Integer.parseInt(input.split(" ")[1]) - 1;
+            //     Task task = list.get(index);
+            //     list.remove(index);
+            //     System.out.println("-------------------------------------");
+            //     System.out.println("Ok! This task is removed: \n   " + 
+            //     task.toString() + "\nNow you have " + list.size() + " tasks in the list!" );
+
+            // } else {
+            //     try {
+            //         checkInput(input, list);
+            //     } catch (ItachiException e) {
+            //         System.out.println("--------------------------------------------------");
+            //         System.out.println("Error: " + e.getMessage());
+            //         System.out.println("--------------------------------------------------");
+            //     }
+
+            //     }
 
                 // if (input.toLowerCase().startsWith("todo")) {
                 // String desc = input.substring(5);
@@ -84,7 +150,7 @@ public class Itachi {
                 //     printTasksAdded(task, list.size());
                 // }
             }
-
+        
         }
        
 
