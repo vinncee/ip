@@ -1,0 +1,60 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Storage {
+    private final String filePath;
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public void save(ArrayList<Task> tasks) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        for (Task t : tasks) {
+            fw.write(t.toSaveFormat() + System.lineSeparator());
+        }
+        fw.close();
+    }
+
+    public ArrayList<Task> load() throws IOException {
+        ArrayList<Task> tasks = new ArrayList<>();
+        File f = new File(filePath);
+        if (!f.exists()) {
+            f.getParentFile().mkdirs();
+            f.createNewFile();
+            return tasks;
+        }
+
+        Scanner sc = new Scanner(f);
+        while (sc.hasNextLine()) {
+            String line = sc.nextLine().trim();
+            if (line.isEmpty()) continue;
+
+            String[] parts = line.split(" \\| ");
+            String type = parts[0];
+            boolean isDone = parts[1].equals("1");
+            String desc = parts[2];
+
+            Task t;
+            switch (type) {
+            case "T":
+                t = new Todo(desc); break;
+            case "D":
+                t = new Deadline(desc, parts[3]); break;
+            case "E":
+                t = new Event(desc, parts[3], parts[4]); break;
+            default: 
+                continue;
+            }
+
+            if (isDone) t.markAsDone();
+            tasks.add(t);
+        }
+        sc.close();
+        return tasks;
+    }
+
+}
