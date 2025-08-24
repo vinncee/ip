@@ -1,11 +1,29 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Itachi {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Itachi\nWhat can I do for you?");
+        Storage storage = new Storage("./data/itachi.txt");
         ArrayList<Task> list = new ArrayList<>();
+        
+        try {
+            list = storage.load();
+        } catch (Exception e) {
+            System.out.println("Error loading tasks, list will be resetted");
+        }
+
+        if (!list.isEmpty()) {
+        System.out.println("-------------------------------------");
+        System.out.println("Here are your saved tasks:");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println((i + 1) + ". " + list.get(i).toSaveFormat());
+        }
+        System.out.println("-------------------------------------");
+        }
         
         while (true) {
             String input = scanner.nextLine().trim();
@@ -59,6 +77,13 @@ public class Itachi {
                         System.out.println("Ok! This task is removed: \n   " + 
                         task.toString() + "\nNow you have " + list.size() + " tasks in the list!" );
                     }
+                    try {
+                        storage.save(list);
+                    } catch (IOException e) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("Error: " + e.getMessage());
+                        System.out.println("--------------------------------------------------");
+                    }
                     break;
                 
                 case TODO:
@@ -66,7 +91,8 @@ public class Itachi {
                 case EVENT: 
                     try {
                         checkInput(input, list);
-                    } catch (ItachiException e) {
+                        storage.save(list);
+                    } catch (ItachiException | IOException e) {
                         System.out.println("--------------------------------------------------");
                         System.out.println("Error: " + e.getMessage());
                         System.out.println("--------------------------------------------------");
@@ -75,7 +101,7 @@ public class Itachi {
                     
             }
 
-            // if (input.equalsIgnoreCase("bye")) {
+            // if (input.equalsIgnoreCase("bye")) 
             //     System.out.println("-------------------------------------");
             //     System.out.println("byeee see u in the leaf village again!");
             //     System.out.println("-------------------------------------");
@@ -193,6 +219,7 @@ public class Itachi {
                 list.add(deadline);
                 printTasksAdded(deadline, list.size());
                 break;
+
             case "event":
                 if (parts.length < 2 || !parts[1].contains("/from") || !parts[1].contains("/to")) {
                     throw new ItachiException("Write the description followed by '/from' time, and '/to' time! ");
