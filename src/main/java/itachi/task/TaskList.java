@@ -1,4 +1,7 @@
+package itachi.task;
 import java.util.ArrayList;
+
+import itachi.task.Task;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
