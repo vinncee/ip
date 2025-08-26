@@ -1,3 +1,5 @@
+package itachi.command;
+import itachi.ItachiException;
 
 public enum Commands {
     TODO,

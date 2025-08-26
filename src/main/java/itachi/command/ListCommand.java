@@ -1,4 +1,11 @@
+package itachi.command;
 import java.io.IOException;
+
+import itachi.ItachiException;
+import itachi.Storage;
+import itachi.Ui;
+import itachi.command.Command;
+import itachi.task.TaskList;
 
 public class ListCommand extends Command {
 

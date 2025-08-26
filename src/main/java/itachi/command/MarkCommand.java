@@ -1,9 +1,17 @@
+package itachi.command;
 import java.io.IOException;
 
-public class UnmarkCommand extends Command {
+import itachi.ItachiException;
+import itachi.Storage;
+import itachi.Ui;
+import itachi.command.Command;
+import itachi.task.Task;
+import itachi.task.TaskList;
+
+public class MarkCommand extends Command{
     private int index;
 
-    public UnmarkCommand(int index) {
+    public MarkCommand(int index) {
         this.index = index;
     }
 
@@ -17,13 +25,11 @@ public class UnmarkCommand extends Command {
         }
 
         Task task = tasks.get(this.index);
-        task.markAsNotDone();
+        task.markAsDone();
         storage.save(tasks.getTasks());
         ui.showLine();
-        System.out.println("Nice! I've marked this task as NOT done:");
+        System.out.println("Nice! I've marked this task as done:");
         System.out.println(task);
         ui.showLine();
     }
 }
-
-

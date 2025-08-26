@@ -1,3 +1,9 @@
+package itachi.command;
+import itachi.Storage;
+import itachi.Ui;
+import itachi.command.Command;
+import itachi.task.TaskList;
+
 public class ExitCommand extends Command{
 
     @Override 
