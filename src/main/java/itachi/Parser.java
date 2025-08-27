@@ -9,6 +9,7 @@ import itachi.command.ListCommand;
 import itachi.command.MarkCommand;
 import itachi.command.ToDoCommand;
 import itachi.command.UnmarkCommand;
+import itachi.command.FindCommand;
 
 
 public class Parser {
@@ -33,6 +34,8 @@ public class Parser {
             return parseUnmark(words);
         case "delete":
             return parseDelete(words);
+        case "find":
+            return parseFind(words);
         default:
             throw new ItachiException("No such commands!");
         }
@@ -112,4 +115,12 @@ public class Parser {
         }
         return new DeleteCommand(taskNumber);
     }
+
+    private static Command parseFind(String[] words) throws ItachiException {
+        if (words.length < 2 || words[1].trim().isEmpty()) {
+            throw new ItachiException("The find command requires a keyword!");
+        }
+        return new FindCommand(words[1].trim());
+    }
+
 }
