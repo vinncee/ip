@@ -45,7 +45,6 @@ public class MarkCommand extends Command{
             ui.showLine();
             return;
         }
-
         Task task = tasks.get(this.index);
         task.markAsDone();
         storage.save(tasks.getTasks());
