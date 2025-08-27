@@ -1,13 +1,13 @@
 package itachi.command;
 
-import itachi.task.Todo;
-import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import itachi.task.Deadline;
 
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class DeadlineTest {
 

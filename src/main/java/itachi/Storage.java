@@ -1,4 +1,5 @@
 package itachi;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -55,12 +56,10 @@ public class Storage {
             default: 
                 continue;
             }
-
             if (isDone) t.markAsDone();
             tasks.add(t);
         }
         sc.close();
         return tasks;
     }
-
 }

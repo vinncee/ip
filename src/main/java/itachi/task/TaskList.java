@@ -1,7 +1,6 @@
 package itachi.task;
-import java.util.ArrayList;
 
-import itachi.task.Task;
+import java.util.ArrayList;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
@@ -47,8 +46,6 @@ public class TaskList {
             System.out.println((i + 1) + ". " + tasks.get(i).toSaveFormat());
         }
     }
-
-   
 }
 
 

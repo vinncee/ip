@@ -1,10 +1,10 @@
 package itachi.command;
+
 import java.io.IOException;
 
 import itachi.ItachiException;
 import itachi.Storage;
 import itachi.Ui;
-import itachi.command.Command;
 import itachi.task.Task;
 import itachi.task.TaskList;
 
@@ -23,7 +23,6 @@ public class MarkCommand extends Command{
             ui.showLine();
             return;
         }
-
         Task task = tasks.get(this.index);
         task.markAsDone();
         storage.save(tasks.getTasks());

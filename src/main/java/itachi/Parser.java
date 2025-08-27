@@ -1,4 +1,5 @@
 package itachi;
+
 import itachi.command.Command;
 import itachi.command.DeadlineCommand;
 import itachi.command.DeleteCommand;

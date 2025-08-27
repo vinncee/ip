@@ -1,10 +1,10 @@
 package itachi.command;
+
 import java.io.IOException;
 
 import itachi.ItachiException;
 import itachi.Storage;
 import itachi.Ui;
-import itachi.command.Command;
 import itachi.task.Deadline;
 import itachi.task.TaskList;
 
@@ -28,5 +28,4 @@ public class DeadlineCommand extends Command {
         System.out.println("Now you have " + tasks.size() + " tasks in the list!");
         ui.showLine();
     }
-
 }
