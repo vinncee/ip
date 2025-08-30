@@ -2,6 +2,8 @@ package itachi.task;
 
 import java.util.ArrayList;
 
+import itachi.Ui;
+
 public class TaskList {
     private final ArrayList<Task> tasks;
 
@@ -51,9 +53,9 @@ public class TaskList {
         }
     }
 
-    public void printAllTasks() {
+    public void printAllTasks(Ui ui) {
         for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i).toSaveFormat());
+            ui.showMessage((i + 1) + ". " + tasks.get(i).toSaveFormat());
         }
     }
 }
