@@ -39,7 +39,7 @@ public class UnmarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
         if (index < 0 || index >= tasks.size()) {
             ui.showLine();
-            System.out.println("No such task number");
+            ui.showMessage("No such task number");
             ui.showLine();
             return;
         }
@@ -48,8 +48,8 @@ public class UnmarkCommand extends Command {
         task.markAsNotDone();
         storage.save(tasks.getTasks());
         ui.showLine();
-        System.out.println("Nice! I've marked this task as NOT done:");
-        System.out.println(task);
+        ui.showMessage("Nice! I've marked this task as NOT done:");
+        ui.showMessage(task.toString());
         ui.showLine();
     }
 }

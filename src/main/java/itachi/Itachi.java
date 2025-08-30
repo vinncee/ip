@@ -1,6 +1,7 @@
 package itachi;
 
 import java.io.IOException;
+import java.util.List;
 
 import itachi.command.Command;
 import itachi.task.TaskList;
@@ -24,8 +25,8 @@ public class Itachi {
 
         if (!this.tasks.isEmpty()) {
             this.ui.showLine();
-            System.out.println("Here are your saved tasks!");
-            this.tasks.printAllTasks();
+            ui.showMessage("Here are your saved tasks!");
+            this.tasks.printAllTasks(this.ui);
             this.ui.showLine();
         }
     }
@@ -45,6 +46,18 @@ public class Itachi {
             } finally {
                 ui.showLine();
             }
+        }
+    }
+
+    public List<String> getResponse(String input) {
+        ui.startNewCommand(); // clear previous messages
+        try {
+            Command c = Parser.parse(input);
+            c.execute(this.tasks, this.ui, this.storage);
+            return ui.getMessage(); // return all messages from this command
+        } catch (ItachiException | IOException e) {
+            ui.showError(e.getMessage());
+            return ui.getMessage();
         }
     }
 

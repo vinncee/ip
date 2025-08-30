@@ -50,14 +50,14 @@ public class EventCommand extends Command {
      * @throws IOException     if saving the task list fails
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
         Event event = new Event(this.description, this.from, this.to);
         tasks.add(event);
         storage.save(tasks.getTasks());
         ui.showLine();
-        System.out.println("Got it. I've added this task:");
-        System.out.println(event);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list!");
+        ui.showMessage("Got it. I've added this task:");
+        ui.showMessage(event.toString());
+        ui.showMessage("Now you have " + tasks.size() + " tasks in the list!");
         ui.showLine();
     }
 }
