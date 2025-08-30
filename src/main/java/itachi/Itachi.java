@@ -6,6 +6,7 @@ import itachi.command.Command;
 import itachi.task.TaskList;
 
 public class Itachi {
+
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -18,7 +19,7 @@ public class Itachi {
             this.tasks = new TaskList(storage.load());
         } catch (IOException e) {
             this.ui.showError("unable to load file");
-            this.tasks  = new TaskList();
+            this.tasks = new TaskList();
         }
 
         if (!this.tasks.isEmpty()) {
