@@ -23,7 +23,7 @@ public class ListCommand extends Command {
      * @throws ItachiException if any errors related to Itachi operations occur
      * @throws IOException if there is an I/O error while accessing storage
      */
-    @Override 
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
         ui.showLine();
         System.out.println("Here are the tasks in your list:");

@@ -1,5 +1,4 @@
 package itachi;
-
 import itachi.command.Command;
 import itachi.command.DeadlineCommand;
 import itachi.command.DeleteCommand;
@@ -122,5 +121,4 @@ public class Parser {
         }
         return new FindCommand(words[1].trim());
     }
-
 }

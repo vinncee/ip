@@ -23,11 +23,11 @@ public abstract class Command {
      * @throws IOException if reading or writing to storage fails
      */
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException;
-
     /**
-     * Returns whether this command is an exit command
-     * @return false by default, overridden by
-     * ExitCommand to return true
+     * Returns whether this command is an exit command.
+     *
+     * @return false by default, overridden
+     *         by ExitCommand to return true
      */
     public boolean isExit() {
         return false;

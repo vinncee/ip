@@ -43,7 +43,7 @@ public class DeadlineCommand extends Command {
      * @throws IOException if saving the task list fails
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException{
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
         Deadline deadline = new Deadline(this.description, this.by);
         tasks.add(deadline);
         storage.save(tasks.getTasks());
