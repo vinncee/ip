@@ -38,7 +38,9 @@ public class Storage {
         Scanner sc = new Scanner(f);
         while (sc.hasNextLine()) {
             String line = sc.nextLine().trim();
-            if (line.isEmpty()) continue;
+            if (line.isEmpty()) {
+                continue;
+            }
 
             String[] parts = line.split(" \\| ");
             String type = parts[0];
@@ -48,15 +50,20 @@ public class Storage {
             Task t;
             switch (type) {
             case "T":
-                t = new Todo(desc); break;
+                t = new Todo(desc);
+                break;
             case "D":
-                t = new Deadline(desc, parts[3]); break;
+                t = new Deadline(desc, parts[3]);
+                break;
             case "E":
-                t = new Event(desc, parts[3], parts[4]); break;
-            default: 
+                t = new Event(desc, parts[3], parts[4]);
+                break;
+            default:
                 continue;
             }
-            if (isDone) t.markAsDone();
+            if (isDone) {
+                t.markAsDone();
+            }
             tasks.add(t);
         }
         sc.close();
