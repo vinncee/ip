@@ -1,8 +1,8 @@
 package itachi;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import itachi.task.TaskList;
 
@@ -23,19 +23,16 @@ public class Ui {
 
     public void showWelcome() {
         String msg = "\"Hello! I'm Itachi\nWhat can I do for you?";
-        //System.out.println(msg);
         showMessage(msg);
     }
 
     public void showLine() {
-        //System.out.println("-------------------------------------");
         showMessage("--------------------------------------");
     }
 
     public void showError(String errorMsg) {
         String msg = "Error: " + errorMsg;
-        System.out.println(msg);
-        messages.add(msg);
+        this.showMessage(msg);
     }
 
     public String readCommand() {
@@ -44,18 +41,16 @@ public class Ui {
 
     public void showFindResult(TaskList matchedTasks) {
         if (matchedTasks.getTasks().isEmpty()) {
-            System.out.println("-------------------------------------");
+            this.showMessage("-------------------------------------");
             String msg = " No matching tasks found.";
-            System.out.println(" No matching tasks found.");
-            messages.add(msg);
-            System.out.println("-------------------------------------");
+            this.showMessage(" No matching tasks found.");
+            this.showMessage("-------------------------------------");
         } else {
-            System.out.println("-------------------------------------");
-            System.out.println(" Here are the matching tasks in your list:");
+            this.showMessage("-------------------------------------");
+            this.showMessage(" Here are the matching tasks in your list:");
             for (int i = 0; i < matchedTasks.size(); i++) {
                 String msg = (i + 1) + ". " + matchedTasks.getTasks().get(i);
-                System.out.println(" " + (i + 1) + ". " + matchedTasks.getTasks().get(i));
-                messages.add(msg);
+                this.showMessage(" " + (i + 1) + ". " + matchedTasks.getTasks().get(i));
             }
         }
     }
@@ -65,7 +60,7 @@ public class Ui {
     }
 
     public void showMessage(String msg) {
-        System.out.println(msg); // optional for console
+        System.out.println(msg); // optional for console output
         messages.add(msg);
     }
 
