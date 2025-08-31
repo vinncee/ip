@@ -26,7 +26,7 @@ public class Task {
     }
 
     public String toSaveFormat() {
-        return (isDone ? "1" : "0") + " | "+ description;
+        return (isDone ? "1" : "0") + " | " + description;
     }
 
     @Override
