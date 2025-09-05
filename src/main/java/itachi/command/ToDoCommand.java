@@ -45,7 +45,16 @@ public class ToDoCommand extends Command {
         ui.showMessage("Got it. I've added this task:");
         ui.showMessage(todo.toString());
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list!");
-
         ui.showLine();
+        if (this.isUndoable()) {
+            CommandHistory.getInstance().push(this);
+        }
+    }
+
+    @Override
+    public void undo(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        tasks.remove(tasks.size() - 1);
+        storage.save(tasks.getTasks());
+        ui.showMessage("Undo Todo: " + description);
     }
 }

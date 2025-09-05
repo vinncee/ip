@@ -32,4 +32,9 @@ public class ListCommand extends Command {
             ui.showMessage((i + 1) + ". " + tasks.get(i).toString());
         }
     }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
+    }
 }

@@ -5,6 +5,7 @@ import java.io.IOException;
 import itachi.ItachiException;
 import itachi.Storage;
 import itachi.Ui;
+import itachi.task.Task;
 import itachi.task.TaskList;
 
 /**
@@ -16,6 +17,7 @@ import itachi.task.TaskList;
 public class DeleteCommand extends Command {
     /** The 1-based index of the task to be deleted. */
     private int taskNumber;
+    private Task deletedTask;
 
     /**
      * Constructs a {@code DeleteCommand} with the specified task number.
@@ -49,8 +51,17 @@ public class DeleteCommand extends Command {
             ui.showLine();
             return;
         }
+
+        deletedTask = tasks.get(taskNumber - 1);
         tasks.remove(taskNumber - 1);
         storage.save(tasks.getTasks());
         ui.showMessage("Task " + this.taskNumber + " deleted");
+    }
+
+    @Override
+    public void undo(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        tasks.add(deletedTask);
+        storage.save(tasks.getTasks());
+        ui.showMessage("Undo Delete: " + deletedTask);
     }
 }

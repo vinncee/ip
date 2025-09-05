@@ -9,6 +9,7 @@ import itachi.command.FindCommand;
 import itachi.command.ListCommand;
 import itachi.command.MarkCommand;
 import itachi.command.ToDoCommand;
+import itachi.command.UndoCommand;
 import itachi.command.UnmarkCommand;
 
 /**
@@ -58,6 +59,8 @@ public class Parser {
             return parseDelete(words);
         case "find":
             return parseFind(words);
+        case "undo":
+            return new UndoCommand();
         default:
             throw new ItachiException("No such commands!");
         }
