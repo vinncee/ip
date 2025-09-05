@@ -21,6 +21,7 @@ public class ExitCommand extends Command{
      */
     @Override 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Task list should never be null";
         ui.showLine();
         ui.showMessage("byeee see u in the leaf village again!");
         ui.showLine();

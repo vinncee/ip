@@ -14,8 +14,11 @@ import itachi.command.FindCommand;
 public class Parser {
 
     public static Command parse(String input) throws ItachiException {
+        assert input != null && !input.isEmpty() : "Input command can't be null or empty";
         String[] words = input.split(" ", 2);
+        assert words.length > 0 : "Splitting input should always produce at least one word";
         String command = words[0].toLowerCase().trim();
+        assert !command.isEmpty() : "Command keyword should never be empty";
         switch (command) {
         case "todo":
             return parseTodo(words);
@@ -41,18 +44,21 @@ public class Parser {
     }
 
     private static Command parseTodo(String[] words) throws ItachiException {
+        assert words != null && words.length > 0 : "Words array should never be null or empty";
         if (words.length < 2 || words[1].trim().isEmpty()) {
             throw new ItachiException("you not gonna key in what u wanna do?");
         }
         String toDoDesc = words[1].trim();
+        assert toDoDesc != null : "Todo description should not be null";
         return new ToDoCommand(toDoDesc);
     }
 
     private static Command parseDeadline(String[] words) throws ItachiException {
         if (words.length < 2 || !words[1].contains("/by")) {
             throw new ItachiException("no empty messages and please write '/by' followed by the deadline");
-        }   
+        }
         String[] deadlineParts = words[1].split("/by", 2);
+        assert deadlineParts.length == 2 : "Deadline must split into description and date";
         String deadlineDesc = deadlineParts[0].trim();
         String by = deadlineParts[1].trim();
         if (deadlineDesc.isEmpty() || by.isEmpty()) {
@@ -84,6 +90,7 @@ public class Parser {
         }
         try {
             int taskNum = Integer.parseInt(words[1].trim()) - 1;
+            assert taskNum >= 0 : "Task number must be non negative";
             return new MarkCommand(taskNum);
         } catch (NumberFormatException e) {
             throw new ItachiException("Task number must be integer!");
@@ -95,8 +102,9 @@ public class Parser {
             throw new ItachiException("Mark command must be in the format: mark <tasknumber>");
         }
         try {
-            int taskNum = Integer.parseInt(words[1].trim()) - 1;
-            return new UnmarkCommand(taskNum);
+            int taskIndex = Integer.parseInt(words[1].trim()) - 1;
+            assert taskIndex >= 0 : "Task number must be non negative";
+            return new UnmarkCommand(taskIndex);
         } catch (NumberFormatException e) {
             throw new ItachiException("Task number must be integer!");
         }
@@ -109,6 +117,7 @@ public class Parser {
         int taskNumber;
         try {
             taskNumber = Integer.parseInt(words[1]);
+            assert taskNumber >= 0 : "Task number must be non negative";
         } catch (NumberFormatException e) {
             throw new ItachiException("Task number must be integer!");
         }
@@ -119,6 +128,8 @@ public class Parser {
         if (words.length < 2 || words[1].trim().isEmpty()) {
             throw new ItachiException("The find command requires a keyword!");
         }
-        return new FindCommand(words[1].trim());
+        String keyWord = words[1].trim();
+        assert keyWord != null && !keyWord.isEmpty() : "Keyword can't be null or empty";
+        return new FindCommand(keyWord);
     }
 }

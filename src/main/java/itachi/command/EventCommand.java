@@ -51,6 +51,7 @@ public class EventCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        assert tasks != null : "Task list should never be null";
         Event event = new Event(this.description, this.from, this.to);
         tasks.add(event);
         storage.save(tasks.getTasks());

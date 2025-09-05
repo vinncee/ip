@@ -8,6 +8,8 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by) {
         super(description);
+        assert description != null : "Description can't be null";
+        assert by != null : "Deadline date string can't be null";
         this.by = LocalDate.parse(by);
     }
 

@@ -28,6 +28,7 @@ public enum Commands {
      * @throws ItachiException if the input does not match any valid command
      */
     public static Commands convertStringToEnum(String input) throws ItachiException {
+        assert input != null : "Input command string should never be null";
         switch (input.toLowerCase()) {
         case "todo":
             return TODO;

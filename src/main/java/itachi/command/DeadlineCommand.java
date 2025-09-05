@@ -44,6 +44,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        assert tasks != null : "Task list should never be null";
         Deadline deadline = new Deadline(this.description, this.by);
         tasks.add(deadline);
         storage.save(tasks.getTasks());
