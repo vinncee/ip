@@ -1,6 +1,8 @@
 package itachi.task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import itachi.Ui;
 
@@ -47,12 +49,9 @@ public class TaskList {
      * @return a new {@code TaskList} containing all matching tasks
      */
     public TaskList find(String keyword) {
-        ArrayList<Task> matched = new ArrayList<>();
-        for (Task task : tasks) {
-            if (task.getDescription().contains(keyword)) {
-                matched.add(task);
-            }
-        }
+        ArrayList<Task> matched = tasks.stream()
+                                  .filter(task -> task.getDescription().contains(keyword))
+                                  .collect(Collectors.toCollection(ArrayList::new));
         return new TaskList(matched);
     }
 
@@ -74,11 +73,9 @@ public class TaskList {
      * format that they are saved as.
      * @param ui the {@link Ui} instance used to display the formatted task list
      */
-
     public void printAllTasks(Ui ui) {
-        for (int i = 0; i < this.tasks.size(); i++) {
-            ui.showMessage((i + 1) + ". " + tasks.get(i).toSaveFormat());
-        }
+        IntStream.range(0, tasks.size())
+                 .forEach(i -> ui.showMessage((i + 1) + ". " + tasks.get(i).toSaveFormat()));
     }
 }
 
