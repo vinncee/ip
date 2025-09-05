@@ -3,10 +3,22 @@ package itachi.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a task that has a start and end date.
+ * An event has a description inherited from {@link Task}, a start date and
+ * an end date.
+ */
 public class Event extends Task {
     protected LocalDate from;
     protected LocalDate to;
 
+    /**
+     * Constructs an {@code Event} tasl with the given description, start date and
+     * end date.
+     * @param description the description of the event
+     * @param from the start date of the event in yyyy-MM-dd format
+     * @param to the end date of the event in yyyy-MM-dd format
+     */
     public Event(String description, String from, String to) {
         super(description);
         assert description != null : "Description can't be null";

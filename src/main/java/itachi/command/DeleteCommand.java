@@ -2,10 +2,10 @@ package itachi.command;
 
 import java.io.IOException;
 
-import itachi.task.TaskList;
-import itachi.Ui;
 import itachi.ItachiException;
 import itachi.Storage;
+import itachi.Ui;
+import itachi.task.TaskList;
 
 /**
  * Represents a command that deletes a task from the task list.

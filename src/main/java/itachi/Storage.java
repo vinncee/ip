@@ -11,6 +11,9 @@ import itachi.task.Event;
 import itachi.task.Task;
 import itachi.task.Todo;
 
+/**
+ * Handles reading and writing of tasks to a file on disk
+ */
 public class Storage {
     private final String filePath;
 
@@ -18,6 +21,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Saved the list of tasks to the file
+     * @param tasks the list of tasks to save
+     * @throws IOException if there is an error writing to the file
+     */
     public void save(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         for (Task t : tasks) {
@@ -26,6 +34,14 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * <p>
+     * If the file or its parent directories do not exist, they are created.
+     * Returns an empty list if the file was newly created.
+     * </p>
+     * @return a list of tasks loaded from the file
+     * @throws IOException if there is an error reading from file
+     */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
         File f = new File(filePath);

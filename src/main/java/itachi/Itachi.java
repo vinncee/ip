@@ -6,12 +6,25 @@ import java.util.List;
 import itachi.command.Command;
 import itachi.task.TaskList;
 
+/**
+ * The main class for the Itachi bot application.
+ *
+ * <p>
+ * This class handles initialization of the {@link #tasks} list,
+ * {@link #ui} interface, and {@link #storage} system for persistence.
+ * It also contains the main loop to run the bot and respond to user input.
+ * </p>
+ */
 public class Itachi {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initializes an Itachi bot instance.
+     * @param filepath the file path to load/save task data
+     */
     public Itachi(String filepath) {
         assert filepath != null && !filepath.isEmpty() : "Filepath can't be null or empty";
         this.ui = new Ui();
@@ -34,6 +47,10 @@ public class Itachi {
         }
     }
 
+    /**
+     * Starts the main loop of the Itachi bot, continuously reading user input,
+     * parsing commands, and executing them until the exit command is issued.
+     */
     public void run() {
         assert ui != null : "UI should never be null";
         assert tasks != null : "TaskList should never be null";

@@ -1,9 +1,19 @@
 package itachi.task;
 
+/**
+ * Represents a generic task with a description and a completion status.
+ * A {@code Task} serves as the base class for more specific task types
+ * like {@code Todo}, {@code Deadline}, and {@code Event}.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructs a new {@code Task} with the given description.
+     * Task is marked as not done initially.
+     * @param description the description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

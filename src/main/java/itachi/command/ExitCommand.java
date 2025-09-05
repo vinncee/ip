@@ -10,7 +10,7 @@ import itachi.task.TaskList;
  * When executed, it prints a farewell message to the user.
  * The {@link #isExit()} method returns true to signal termination.
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     /**
      * Executes the exit command by displaying a farewell message via the Ui.

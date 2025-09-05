@@ -1,18 +1,38 @@
 package itachi;
+
 import itachi.command.Command;
 import itachi.command.DeadlineCommand;
 import itachi.command.DeleteCommand;
 import itachi.command.EventCommand;
 import itachi.command.ExitCommand;
+import itachi.command.FindCommand;
 import itachi.command.ListCommand;
 import itachi.command.MarkCommand;
 import itachi.command.ToDoCommand;
 import itachi.command.UnmarkCommand;
-import itachi.command.FindCommand;
 
-
+/**
+ * Utility class for parsing user input into {@link Command} objects.
+ *
+ * <p>
+ * This class handles splitting the input string, validating its format,
+ * and delegating to the appropriate command constructor based on the command keyword.
+ * Assertions are used to enforce internal invariants.
+ * </p>
+ */
 public class Parser {
 
+    /**
+     * Parses a user input string into a corresponding {@link Command}.
+     * <p>
+     * The input is expected to begin with a valid command keyword (e.g., "todo", "deadline", "event"),
+     * optionally followed by arguments. Throws {@link ItachiException} if the input does not
+     * correspond to a valid command or if required arguments are missing/invalid.
+     * </p>
+     * @param input the raw string entered by user
+     * @return object representing the parsed action
+     * @throws ItachiException if the input is invalid or command specific errors occur
+     */
     public static Command parse(String input) throws ItachiException {
         assert input != null && !input.isEmpty() : "Input command can't be null or empty";
         String[] words = input.split(" ", 2);

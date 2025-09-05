@@ -11,7 +11,7 @@ import itachi.task.Todo;
 /**
  * Represents a command to add a Todo task to the task list.
  */
-public class ToDoCommand extends Command{
+public class ToDoCommand extends Command {
 
     /** The description of the Todo task to be added. */
     private String description;
