@@ -37,13 +37,11 @@ public class ToDoCommand extends Command{
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        assert tasks != null : "Task list should never be null";
         Todo todo = new Todo(this.description);
         tasks.add(todo);
         storage.save(tasks.getTasks());
         ui.showLine();
-//        ui.showMessage("Got it. I've added this task:");
-//        ui.showMessage(todo);
-//        ui.showMessage("Now you have " + tasks.size() + " tasks in the list!");
         ui.showMessage("Got it. I've added this task:");
         ui.showMessage(todo.toString());
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list!");

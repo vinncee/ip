@@ -42,6 +42,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        assert tasks != null : "Task list should never be null";
         if (taskNumber < 1 || taskNumber > tasks.size()) {
             ui.showLine();
             ui.showMessage("No such task number");
