@@ -13,7 +13,7 @@ import itachi.task.TaskList;
  * The index inputted by user represents the index
  * of the task in the TaskList to be marked
  */
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
 
     /** The 0-based index of the task to mark as done. */
     private int index;

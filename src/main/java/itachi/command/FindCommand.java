@@ -7,8 +7,11 @@ import itachi.Ui;
 import itachi.task.Task;
 import itachi.task.TaskList;
 
-
-
+/**
+ * Represents a command that searches for tasks in the task list
+ * containing a specified keyword. The search is case-sensitive
+ * and matches any task description that contains the keyword.
+ */
 public class FindCommand extends Command {
     private final String keyword;
 
