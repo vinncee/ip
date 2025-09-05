@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import itachi.command.Command;
+import itachi.command.CommandHistory;
 import itachi.task.TaskList;
 
 /**
@@ -20,6 +21,7 @@ public class Itachi {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private CommandHistory history;
 
     /**
      * Initializes an Itachi bot instance.
@@ -29,6 +31,7 @@ public class Itachi {
         assert filepath != null && !filepath.isEmpty() : "Filepath can't be null or empty";
         this.ui = new Ui();
         this.storage = new Storage(filepath);
+        this.history = new CommandHistory();
 
         try {
             this.tasks = new TaskList(storage.load());
@@ -63,6 +66,9 @@ public class Itachi {
                 this.ui.showLine();
                 Command c = Parser.parse(userCommand);
                 c.execute(this.tasks, this.ui, this.storage);
+                if (c.isUndoable()) {
+                    history.push(c);
+                }
                 isExit = c.isExit();
             } catch (ItachiException | IOException e) {
                 ui.showError(e.getMessage());

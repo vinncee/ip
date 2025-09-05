@@ -32,6 +32,14 @@ public abstract class Command {
     public boolean isExit() {
         return false;
     }
+
+    public void undo(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        throw new UnsupportedOperationException("Undo operation is not supported for this command!");
+    }
+
+    public boolean isUndoable() {
+        return true;
+    }
 }
 
 
