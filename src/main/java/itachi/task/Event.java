@@ -13,7 +13,7 @@ public class Event extends Task {
     protected LocalDate to;
 
     /**
-     * Constructs an {@code Event} tasl with the given description, start date and
+     * Constructs an {@code Event} task with the given description, start date and
      * end date.
      * @param description the description of the event
      * @param from the start date of the event in yyyy-MM-dd format
