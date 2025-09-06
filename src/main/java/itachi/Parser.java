@@ -14,12 +14,9 @@ import itachi.command.UnmarkCommand;
 
 /**
  * Utility class for parsing user input into {@link Command} objects.
- *
- * <p>
  * This class handles splitting the input string, validating its format,
  * and delegating to the appropriate command constructor based on the command keyword.
  * Assertions are used to enforce internal invariants.
- * </p>
  */
 public class Parser {
 
