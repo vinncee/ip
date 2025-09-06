@@ -9,11 +9,10 @@ import itachi.task.Task;
 import itachi.task.TaskList;
 
 /**
- * Represents a command to unmark a task in the task list.
+ * Represents a command to unmark a task in the task list, marking it
+ * as not done.
  */
 public class UnmarkCommand extends Command {
-
-    /** The index of the task to be unmarked (0-based). */
     private int index;
     private boolean prevState;
 
