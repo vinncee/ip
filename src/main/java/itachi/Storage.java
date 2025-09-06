@@ -35,10 +35,8 @@ public class Storage {
     }
 
     /**
-     * <p>
      * If the file or its parent directories do not exist, they are created.
      * Returns an empty list if the file was newly created.
-     * </p>
      * @return a list of tasks loaded from the file
      * @throws IOException if there is an error reading from file
      */
