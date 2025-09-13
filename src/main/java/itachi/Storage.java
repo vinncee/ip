@@ -22,9 +22,9 @@ public class Storage {
     }
 
     /**
-     * Saved the list of tasks to the file
+     * Saves the list of tasks to the file specified by filePath.
      * @param tasks the list of tasks to save
-     * @throws IOException if there is an error writing to the file
+     * @throws IOException if an I/O error occurs while writing to the file
      */
     public void save(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);
