@@ -14,7 +14,7 @@ import itachi.task.TaskList;
  */
 public class UnmarkCommand extends Command {
     private int index;
-    private boolean prevState;
+    private boolean wasDone;
 
     /**
      * Creates an UnmarkCommand for the inputted task index.
@@ -47,7 +47,7 @@ public class UnmarkCommand extends Command {
         }
 
         Task task = tasks.get(this.index);
-        prevState = task.isDone();
+        wasDone = task.isDone();
         task.markAsNotDone();
         storage.save(tasks.getTasks());
         ui.showLine();
@@ -74,7 +74,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void undo(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
         Task task = tasks.getTasks().get(index);
-        if (prevState) {
+        if (wasDone) {
             task.markAsDone();
             storage.save(tasks.getTasks());
             ui.showMessage("Undo Unmark: " + task);
