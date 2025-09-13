@@ -20,7 +20,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
     }
-
+    //This header comment is AI generated.
     /**
      * Saves the list of tasks to the file specified by filePath.
      * @param tasks the list of tasks to save
