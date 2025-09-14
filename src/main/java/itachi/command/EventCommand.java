@@ -51,6 +51,7 @@ public class EventCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        assert tasks != null : "Task list should never be null";
         Event event = new Event(this.description, this.from, this.to);
         tasks.add(event);
         storage.save(tasks.getTasks());
@@ -59,5 +60,15 @@ public class EventCommand extends Command {
         ui.showMessage(event.toString());
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list!");
         ui.showLine();
+        if (this.isUndoable()) {
+            CommandHistory.getInstance().push(this);
+        }
+    }
+
+    @Override
+    public void undo(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        tasks.remove(tasks.size() - 1);
+        storage.save(tasks.getTasks());
+        ui.showMessage("Undo Event: " + description);
     }
 }

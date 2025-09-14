@@ -44,6 +44,7 @@ public class DeadlineCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        assert tasks != null : "Task list should never be null";
         Deadline deadline = new Deadline(this.description, this.by);
         tasks.add(deadline);
         storage.save(tasks.getTasks());
@@ -52,5 +53,15 @@ public class DeadlineCommand extends Command {
         ui.showMessage(deadline.toString());
         ui.showMessage("Now you have " + tasks.size() + " tasks in the list!");
         ui.showLine();
+        if (this.isUndoable()) {
+            CommandHistory.getInstance().push(this);
+        }
+    }
+
+    @Override
+    public void undo(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        tasks.remove(tasks.size() - 1);
+        storage.save(tasks.getTasks());
+        ui.showMessage("Undo Deadline: " + description);
     }
 }

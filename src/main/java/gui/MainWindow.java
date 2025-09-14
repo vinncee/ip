@@ -2,6 +2,7 @@ package gui;
 import java.util.List;
 
 import itachi.Itachi;
+import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -9,6 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 
 /**
@@ -43,16 +45,7 @@ public class MainWindow extends AnchorPane {
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
      */
-//    @FXML
-//    private void handleUserInput() {
-//        String input = userInput.getText();
-//        String response = itachi.getResponse(input);
-//        dialogContainer.getChildren().addAll(
-//                DialogBox.getUserDialog(input, userImage),
-//                DialogBox.getDukeDialog(response, dukeImage)
-//        );
-//        userInput.clear();
-//    }
+
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
@@ -74,8 +67,10 @@ public class MainWindow extends AnchorPane {
 
         // Check for exit command
         if (input.equalsIgnoreCase("bye")) {
-            // Close JavaFX application
-            javafx.application.Platform.exit();
+            // Delay exit slightly so user can see message
+            PauseTransition delay = new PauseTransition(Duration.seconds(2));
+            delay.setOnFinished(e -> javafx.application.Platform.exit());
+            delay.play();
         }
     }
 

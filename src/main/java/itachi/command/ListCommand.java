@@ -25,10 +25,16 @@ public class ListCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws ItachiException, IOException {
+        assert tasks != null : "Task list should never be null";
         ui.showLine();
         ui.showMessage("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             ui.showMessage((i + 1) + ". " + tasks.get(i).toString());
         }
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
     }
 }

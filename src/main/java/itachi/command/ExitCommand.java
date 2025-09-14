@@ -10,7 +10,7 @@ import itachi.task.TaskList;
  * When executed, it prints a farewell message to the user.
  * The {@link #isExit()} method returns true to signal termination.
  */
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     /**
      * Executes the exit command by displaying a farewell message via the Ui.
@@ -21,6 +21,7 @@ public class ExitCommand extends Command{
      */
     @Override 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert tasks != null : "Task list should never be null";
         ui.showLine();
         ui.showMessage("byeee see u in the leaf village again!");
         ui.showLine();
@@ -34,5 +35,10 @@ public class ExitCommand extends Command{
     @Override
     public boolean isExit() {
         return true;
+    }
+
+    @Override
+    public boolean isUndoable() {
+        return false;
     }
 }
