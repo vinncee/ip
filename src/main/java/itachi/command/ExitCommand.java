@@ -19,7 +19,7 @@ public class ExitCommand extends Command {
      * @param ui Ui to display messages
      * @param storage Storage (not used in this command)
      */
-    @Override 
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         assert tasks != null : "Task list should never be null";
         ui.showLine();

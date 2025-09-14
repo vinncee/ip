@@ -1,10 +1,12 @@
 package itachi.command;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 import itachi.task.Todo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class ToDoTest {
 
