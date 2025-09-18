@@ -148,6 +148,22 @@ Expected output:
 Task 2 deleted
 ```
 
+## Finding a task
+
+You can find a task with
+the `find` command followed by the task prefix.
+
+### Format
+`find <task_prefix>`
+
+Example: `find Team meeting`
+
+Expected output:
+```
+Here are the matching tasks:
+1. [E][ ] Team meeting(from: Oct 10 2025 to: Nov 10 2025)
+```
+
 ## Exiting the program
 
 You can exit the program with the `bye` command
